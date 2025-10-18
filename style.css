@@ -1,200 +1,580 @@
-/* Genel Ayarlar ve Sıfırlama */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
+
+/*===== VARIABLES CSS =====*/
+:root {
+  --header-height: 3rem;
+  --font-semi: 600;
+  
+  /*===== Colors =====*/
+  --hue-color: 224;
+  --first-color: hsl(var(--hue-color), 89%, 60%);
+  --second-color: hsl(var(--hue-color), 56%, 12%);
+  --text-color: hsl(var(--hue-color), 8%, 45%);
+  --bg-color: #f9fafb;
+  
+  /*===== Font and typography =====*/
+  --body-font: "Poppins", sans-serif;
+  --big-font-size: 2.5rem;
+  --h2-font-size: 1.5rem;
+  --normal-font-size: 0.938rem;
+  --small-font-size: 0.813rem;
+  
+  /*===== Margins =====*/
+  --mb-1: 0.5rem;
+  --mb-2: 1rem;
+  --mb-3: 1.5rem;
+  --mb-4: 2rem;
+  --mb-5: 2.5rem;
+  --mb-6: 3rem;
+  
+  /*===== z index =====*/
+  --z-back: -10;
+  --z-normal: 1;
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    --big-font-size: 3.5rem;
+    --h2-font-size: 2rem;
+    --normal-font-size: 1rem;
+    --small-font-size: 0.875rem;
+  }
+}
+
+/*===== BASE =====*/
+*, ::before, ::after {
+  box-sizing: border-box;
 }
 
 html {
-    scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    background-color: #f4f4f4;
-    color: #333;
+  margin: var(--header-height) 0 0 0;
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+  color: var(--second-color);
+  background-color: var(--bg-color);
 }
 
+h1, h2, h3, p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/*===== REUSABLE CLASSES =====*/
 .container {
-    max-width: 960px;
-    margin: auto;
-    overflow: hidden;
-    padding: 0 20px;
+  max-width: 1024px;
+  margin-left: var(--mb-2);
+  margin-right: var(--mb-2);
 }
 
-/* Header ve Navigasyon */
+.section {
+  padding: 4rem 0 2rem;
+}
+
+
+
+.section-title {
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: var(--first-color);
+  margin-bottom: var(--mb-4);
+  text-align: center;
+  font-weight: 700;
+}
+
+.section-title::after {
+  position: absolute;
+  content: "";
+  width: 64px;
+  height: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2.5rem;
+  background-color: var(--first-color);
+  border-radius: 2px;
+}
+
+.section-title2 {
+  position: relative;
+  font-size: var(--h2-font-size);
+  color: white;
+  margin-bottom: var(--mb-4);
+  text-align: center;
+  font-weight: 700;
+}
+
+.section-title2::after {
+  position: absolute;
+  content: "";
+  width: 64px;
+  height: 0.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 2.5rem;
+  background-color: var(--first-color);
+  border-radius: 2px;
+}
+
+
+/*===== HEADER & NAV =====*/
 header {
-    background-color: #333;
-    color: #fff;
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    width: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+  background-color: var(--second-color);
+  box-shadow: 0 2px 8px rgba(146, 161, 176, 0.15);
 }
 
 header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: var(--header-height);
+  max-width: 1024px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 var(--mb-2);
 }
 
-header .logo {
-    font-size: 1.5rem;
+.logo {
+  color: whitesmoke;
+  font-weight: var(--font-semi);
+  font-size: 1.2rem;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
+nav ul {
+  display: flex;
+  gap: var(--mb-4);
+  list-style: none;
 }
 
-header nav ul li {
-    margin-left: 20px;
+nav li {
+  list-style: none;
 }
 
-header nav a {
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
+nav a {
+  position: relative;
+  color: var(--second-color);
+  font-weight: var(--font-semi);
+  transition: color 0.3s;
+  padding-bottom: 0.5rem;
 }
 
-header nav a:hover {
-    color: #00bcd4; /* Vurgu Rengi */
+nav a:hover {
+  color: var(--first-color);
 }
 
-/* Ana İçerik Bölümleri */
-section {
-    padding: 60px 0;
-    border-bottom: 1px solid #ddd;
-    opacity: 0; /* JS için başlangıç durumu */
-    transform: translateY(20px); /* JS için başlangıç durumu */
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+nav a::after {
+  position: absolute;
+  content: "";
+  width: 0;
+  height: 0.18rem;
+  left: 0;
+  bottom: 0;
+  background-color: var(--first-color);
+  transition: width 0.3s;
 }
 
-section.visible {
-    opacity: 1;
-    transform: translateY(0);
+nav a:hover::after {
+  width: 100%;
 }
 
-
-section h2 {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 2rem;
-    color: #333;
+/*===== HERO SECTION =====*/
+#tanitim {
+  background: linear-gradient(135deg, var(--first-color) 0%, hsl(var(--hue-color), 89%, 80%) 100%);
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
-/* Hero (Tanıtım) Bölümü */
-.hero {
-    background-color: #fff;
-    text-align: center;
-    padding: 80px 0;
+#tanitim .container {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 1024px;
+  margin: 0 auto;
 }
 
-.hero .profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 20px;
-    border: 5px solid #00bcd4;
+#tanitim h2 {
+  font-size: var(--big-font-size);
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: var(--mb-2);
 }
 
-.hero h2 {
-    margin-bottom: 10px;
+.ozet {
+  color: #fff;
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+  opacity: 0.95;
 }
 
-.hero .ozet {
-    max-width: 600px;
-    margin: auto;
-    font-size: 1.1rem;
-    color: #555;
+/* Decorative blob background */
+#tanitim::before {
+  content: "";
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50% 40% 30% 70% / 60% 30% 70% 40%;
+  top: -50px;
+  right: -50px;
+  animation: blob 7s infinite;
 }
 
-/* Deneyim ve Eğitim Bölümleri */
-.deneyim-item, .egitim-item {
-    background: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-left: 5px solid #00bcd4;
-    border-radius: 5px;
+#tanitim::after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  bottom: -50px;
+  left: -50px;
+  animation: blob 9s infinite reverse;
 }
 
-.deneyim-item h3, .egitim-item h3 {
-    margin-bottom: 5px;
-    color: #00796b;
+@keyframes blob {
+  0%, 100% {
+    border-radius: 50% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: rotate(0deg);
+  }
+  50% {
+    border-radius: 30% 70% 70% 30% / 50% 50% 50% 50%;
+    transform: rotate(180deg);
+  }
 }
 
-.deneyim-item .sirket, .egitim-item .bolum {
-    font-style: italic;
-    color: #666;
-    margin-bottom: 10px;
+/*===== HAKKIMDA SECTION =====*/
+#hakkimda {
+  background-color: #fff;
+}
+
+#hakkimda h2 {
+  text-align: center;
+}
+
+.sectionIn {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: var(--mb-4);
+}
+
+.sectionIn .container:first-child {
+  padding: 0;
+}
+
+.sectionIn .container:first-child p {
+  color: var(--text-color);
+  line-height: 1.8;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.sectionIn .container:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.profile-pic {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px rgba(37, 99, 235, 0.2);
+  transition: transform 0.5s;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+}
+
+/*===== DENEYIM SECTION =====*/
+#deneyim {
+  background: linear-gradient(135deg, var(--second-color) 0%, hsl(var(--hue-color), 56%, 20%) 100%);
+}
+
+#deneyim .container {
+  max-width: 1024px;
+  margin: 0 auto;
+  
+}
+
+.deneyim-item {
+  background-color: #fff;
+  padding: 2rem;
+  margin-bottom: var(--mb-3);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(14, 36, 49, 0.15);
+  transition: transform 0.3s;
+  border-left: 4px solid var(--first-color);
+}
+
+.deneyim-item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(14, 36, 49, 0.2);
+}
+
+.deneyim-item h3 {
+  color: var(--first-color);
+  font-size: 1.3rem;
+  margin-bottom: var(--mb-1);
+  font-weight: var(--font-semi);
+}
+
+.sirket {
+  color: var(--text-color);
+  font-size: var(--small-font-size);
+  margin-bottom: var(--mb-2);
+  font-style: italic;
 }
 
 .deneyim-item ul {
-    list-style: disc;
-    padding-left: 20px;
+  padding-left: 1.5rem;
+  list-style: disc;
 }
 
-/* Yetenekler Bölümü */
+.deneyim-item li {
+  color: var(--text-color);
+  margin-bottom: var(--mb-1);
+  line-height: 1.6;
+}
+
+/*===== EĞİTİM SECTION =====*/
+#egitim {
+  background-color: #fff;
+}
+
+#egitim .container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+.egitim-item {
+  background-color: var(--bg-color);
+  padding: 2rem;
+  margin-bottom: var(--mb-3);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(14, 36, 49, 0.1);
+  transition: transform 0.3s;
+}
+
+.egitim-item:hover {
+  transform: translateY(-5px);
+}
+
+.egitim-item h3 {
+  color: var(--first-color);
+  font-size: 1.3rem;
+  margin-bottom: var(--mb-1);
+  font-weight: var(--font-semi);
+}
+
+.bolum {
+  color: var(--text-color);
+  font-size: var(--small-font-size);
+  margin-bottom: var(--mb-2);
+  font-weight: 600;
+}
+
+.egitim-item p {
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/*===== YETENEKLER SECTION =====*/
+#yetenekler {
+  background:linear-gradient(135deg, var(--first-color) 0%, hsl(var(--hue-color), 89%, 80%) 100%);
+}
+
+#yetenekler .container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
 .yetenek-listesi {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 15px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-top: var(--mb-4);
+  list-style: none;
 }
 
 .yetenek-listesi li {
-    background-color: #00bcd4;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 20px;
-    font-weight: bold;
+  background:  linear-gradient(135deg, var(--second-color) 0%, hsl(var(--hue-color), 56%, 20%) 100%);
+  color: #fff;
+  padding: 1.2rem 1.5rem;
+  border-radius: 1rem;
+  text-align: center;
+  font-weight: var(--font-semi);
+  box-shadow: 0 4px 20px rgba(37, 99, 235, 0.2);
+  transition: all 0.3s;
+  cursor: default;
 }
 
-/* İletişim Bölümü */
+.yetenek-listesi li:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(37, 99, 235, 0.3);
+}
+
+/*===== İLETİŞİM SECTION =====*/
 #iletisim {
-    text-align: center;
+  background: linear-gradient(135deg, var(--second-color) 0%, hsl(var(--hue-color), 56%, 20%) 100%);
+  color: #fff;
+  padding: 4rem 0;
+}
+
+#iletisim .container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+#iletisim h2 {
+  color: #fff;
+}
+
+#iletisim .section-title::after {
+  background-color: #fff;
+}
+
+#iletisim p {
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: var(--mb-2);
+  line-height: 1.8;
 }
 
 #iletisim a {
-    color: #00796b;
-    text-decoration: none;
-    font-weight: bold;
+  color: var(--first-color);
+  font-weight: var(--font-semi);
+  transition: opacity 0.3s;
 }
 
 #iletisim a:hover {
-    text-decoration: underline;
+  opacity: 0.8;
+  text-decoration: underline;
 }
 
-/* Footer */
+/*===== FOOTER =====*/
 footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
+  background-color: hsl(var(--hue-color), 56%, 8%);
+  color: #fff;
+  text-align: center;
+  padding: 2rem 0;
 }
 
-/* Mobil Cihazlar için Duyarlılık */
-@media(max-width: 768px) {
-    header .container {
-        flex-direction: column;
-    }
+footer .container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
 
-    header nav ul {
-        flex-direction: column;
-        text-align: center;
-        margin-top: 10px;
-    }
+footer p {
+  font-size: var(--small-font-size);
+  opacity: 0.8;
+}
 
-    header nav ul li {
-        margin: 5px 0;
-    }
+/*===== RESPONSIVE DESIGN =====*/
+@media screen and (max-width: 768px) {
+  nav ul {
+    display: none;
+  }
 
-    section h2 {
-        font-size: 1.8rem;
-    }
+  #tanitim {
+    padding: 4rem 0;
+  }
+
+  #tanitim h2 {
+    font-size: 2rem;
+  }
+
+  .ozet {
+    font-size: 1rem;
+  }
+
+  .sectionIn {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .sectionIn .container:first-child p {
+    text-align: center;
+  }
+
+  .profile-pic {
+    margin: 0 auto;
+    max-width: 250px;
+  }
+
+  .yetenek-listesi {
+    grid-template-columns: 1fr;
+  }
+
+  .section {
+    padding: 3rem 0 2rem;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  #tanitim {
+    padding: 8rem 0;
+  }
+
+  .section {
+    padding: 5rem 0 3rem;
+  }
+
+  .section-title::after {
+    top: 3rem;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #tanitim h2 {
+    font-size: 3.5rem;
+  }
+
+  .profile-pic {
+    max-width: 320px;
+  }
 }
